@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".PlayingActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/playingToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingLeft="20dp"
+            app:cornerRadius="48dp"
+            android:backgroundTint="#fff"
+            app:rippleColor="#ddd"
+            app:icon="@drawable/ic_arrow_back_black_24dp"
+            app:iconGravity="textStart"
+            app:iconTint="#000"
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/playingMusicImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_empty_music"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/playingMusicTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textSize="16sp"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintBottom_toTopOf="@+id/playingMusicArtist"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playingMusicImg" />
+
+    <TextView
+        android:id="@+id/playingMusicArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingTop="3dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/playingProgress"
+        app:layout_constraintStart_toStartOf="@id/playingMusicTitle"
+        app:layout_constraintTop_toBottomOf="@+id/playingMusicTitle" />
+
+    <SeekBar
+        android:id="@+id/playingProgress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:maxHeight="2dp"
+        android:paddingTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/current"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playingMusicArtist" />
+
+    <TextView
+        android:id="@+id/current"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlayPause"
+        app:layout_constraintStart_toStartOf="@id/playingProgress"
+        app:layout_constraintTop_toBottomOf="@+id/playingProgress" />
+
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="@id/playingProgress"
+        app:layout_constraintTop_toBottomOf="@id/playingProgress" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPrevious"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:cornerRadius="48dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:backgroundTint="#fff"
+        app:rippleColor="#ddd"
+        app:icon="@drawable/ic_skip_previous_black_48dp"
+        app:iconGravity="textStart"
+        app:iconTint="#000"
+        app:iconSize="36dp"
+        app:layout_constraintEnd_toStartOf="@id/btnPlayPause"
+        app:layout_constraintStart_toStartOf="@id/playingProgress"
+        app:layout_constraintTop_toTopOf="@id/btnPlayPause"
+        app:layout_constraintBottom_toBottomOf="@id/btnPlayPause" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPlayPause"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:cornerRadius="55dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:paddingLeft="24dp"
+        app:icon="@drawable/ic_pause_black_48dp"
+        app:iconGravity="textStart"
+        app:iconSize="40dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnNext"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/btnPrevious"
+        app:layout_constraintTop_toBottomOf="@+id/current" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNext"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:cornerRadius="48dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:backgroundTint="#fff"
+        app:rippleColor="#ddd"
+        app:icon="@drawable/ic_skip_next_black_48dp"
+        app:iconGravity="textStart"
+        app:iconTint="#000"
+        app:iconSize="36dp"
+        app:layout_constraintEnd_toEndOf="@id/playingProgress"
+        app:layout_constraintStart_toEndOf="@id/btnPlayPause"
+        app:layout_constraintTop_toTopOf="@id/btnPlayPause"
+        app:layout_constraintBottom_toBottomOf="@id/btnPlayPause" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
