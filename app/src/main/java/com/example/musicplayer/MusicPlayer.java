@@ -76,7 +76,7 @@ public class MusicPlayer {
     public static void resume() { player.start(); }
     public static void seek(int pos) { player.seekTo(pos * 1000); }
 
-    public static void play(int pos) {
+    public static void playByPosition(int pos) {
         currentPosition = pos;
         if (currentPosition == songs.size()) currentPosition = 0;
         if (currentPosition == -1) currentPosition = songs.size() - 1;
@@ -96,12 +96,38 @@ public class MusicPlayer {
         });
     }
 
+    public static void play(long id) {
+        for (int i = 0; i < songs.size(); i++) {
+            if (songs.get(i).getId() == id) {
+                currentSong = songs.get(i);
+                currentPosition = i;
+                break;
+            }
+        }
+
+        if (currentPosition == songs.size()) currentPosition = 0;
+        if (currentPosition == -1) currentPosition = songs.size() - 1;
+        MediaPlayer newPlayer = MediaPlayer.create(mContext, Uri.parse(currentSong.getData()));
+        if (player != null) {
+            player.release();
+            player = null;
+        }
+        player = newPlayer;
+        player.start();
+        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                next();
+            }
+        });
+    }
+
     public static void next() {
-        play(currentPosition + 1);
+        playByPosition(currentPosition + 1);
     }
 
     public static void previous() {
-        play(currentPosition - 1);
+        playByPosition(currentPosition - 1);
     }
 
     public static String getDurationString() {

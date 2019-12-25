@@ -16,11 +16,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="Music player">
 
-        <ImageButton
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSearch"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="36dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_search_black_24dp"
-            android:background="#fff"
+            app:icon="@drawable/ic_search_black_24dp"
+            app:iconGravity="textStart"
+            app:iconTint="#000"
+            android:paddingStart="20dp"
+            android:backgroundTint="#00ffffff"
             android:foregroundGravity="right"
             android:layout_gravity="end"
             android:layout_marginEnd="16dp" />

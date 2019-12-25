@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/songArtist"
         app:layout_constraintStart_toEndOf="@id/songImage"
-        app:layout_constraintEnd_toStartOf="@id/btnMore" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/songArtist"
@@ -42,18 +42,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/songTitle"
         app:layout_constraintEnd_toEndOf="@id/songTitle" />
-
-    <ImageButton
-        android:id="@+id/btnMore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/songImage"
-        app:layout_constraintBottom_toBottomOf="@id/songImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/songTitle"
-        android:src="@drawable/ic_more_vert_black_24dp"
-        android:background="#00ffffff"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

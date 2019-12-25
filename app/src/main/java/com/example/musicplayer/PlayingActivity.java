@@ -29,8 +29,9 @@ public class PlayingActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (MusicPlayer.isPlaying()) {
-//                    ((TextView) findViewById(R.id.duration)).setText(MusicPlayer.getDuration());
-                    ((TextView) findViewById(R.id.current)).setText(MusicPlayer.getCurrentPositionString());
+                    ((TextView) findViewById(R.id.playingMusicTitle)).setText(MusicPlayer.getCurrentSong().getTitle());
+                    ((TextView) findViewById(R.id.playingMusicArtist)).setText(MusicPlayer.getCurrentSong().getArtist());
+                    ((TextView) findViewById(R.id.current)).setText(MusicPlayer.getCurrentPositionString() + " - " + MusicPlayer.getDurationString());
                     ((SeekBar) findViewById(R.id.playingProgress)).setProgress(MusicPlayer.getCurrentPosition());
                 }
                 handler.postDelayed(this, 1000);
@@ -75,7 +76,7 @@ public class PlayingActivity extends AppCompatActivity {
         ((SeekBar) findViewById(R.id.playingProgress)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                MusicPlayer.seek(progress);
+
             }
 
             @Override
@@ -85,7 +86,7 @@ public class PlayingActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                MusicPlayer.seek(seekBar.getProgress());
             }
         });
     }

@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHolder> {
@@ -18,8 +18,17 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
     private Context mContext;
     private List<Song> songs;
 
+    public ListSongAdapter(Context context) {
+        this.mContext = context;
+        this.songs = new ArrayList<>();
+    }
+
     public ListSongAdapter(Context context, List<Song> songs) {
         this.mContext = context;
+        this.songs = songs;
+    }
+
+    public void setSongs(List<Song> songs) {
         this.songs = songs;
     }
 
@@ -35,7 +44,7 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
         Song song = songs.get(position);
         holder.title.setText(song.getTitle());
         holder.artist.setText(song.getArtist());
-        holder.pos = position;
+        holder.id = song.getId();
     }
 
     @Override
@@ -44,22 +53,20 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        int pos;
+        long id;
         TextView title;
         TextView artist;
-        ImageButton more;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.songTitle);
             artist = itemView.findViewById(R.id.songArtist);
-            more = itemView.findViewById(R.id.btnMore);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            MusicPlayer.play(pos);
+            MusicPlayer.play(id);
             mContext.startActivity(new Intent(mContext, PlayingActivity.class));
         }
     }

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -30,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        findViewById(R.id.btnSearch).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
+            }
+        });
 
         MusicPlayer.initPlayer(getApplicationContext());
     }
@@ -37,9 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private void askPermission() {
         ActivityCompat.requestPermissions(this,
                 new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.ACCESS_NETWORK_STATE,
-                        Manifest.permission.INTERNET }, 1);
+                        Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
     }
 
     private void initView() {
@@ -48,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
         rcl.setLayoutManager(new LinearLayoutManager(this));
         ListSongAdapter adapter = new ListSongAdapter(this, songs);
         rcl.setAdapter(adapter);
+
+        findViewById(R.id.current).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, PlayingActivity.class));
+            }
+        });
     }
 
     @Override
